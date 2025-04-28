@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BANGOGS</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#3b82f6',secondary:'#10b981'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Inter', sans-serif;
+}
+.hero-section {
+position: relative;
+background-position: center;
+background-size: cover;
+background-repeat: no-repeat;
+}
+.hero-overlay {
+background: linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.2) 100%);
+}
+.skill-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+.course-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+.testimonial-slide {
+opacity: 0;
+transition: opacity 0.5s ease;
+position: absolute;
+width: 100%;
+}
+.testimonial-slide.active {
+opacity: 1;
+position: relative;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+.custom-checkbox {
+position: relative;
+cursor: pointer;
+}
+.custom-checkbox input {
+position: absolute;
+opacity: 0;
+cursor: pointer;
+}
+.checkmark {
+position: absolute;
+top: 0;
+left: 0;
+height: 20px;
+width: 20px;
+background-color: #fff;
+border: 2px solid #e2e8f0;
+border-radius: 4px;
+}
+.custom-checkbox:hover input ~ .checkmark {
+border-color: #cbd5e1;
+}
+.custom-checkbox input:checked ~ .checkmark {
+background-color: #3b82f6;
+border-color: #3b82f6;
+}
+.checkmark:after {
+content: "";
+position: absolute;
+display: none;
+}
+.custom-checkbox input:checked ~ .checkmark:after {
+display: block;
+}
+.custom-checkbox .checkmark:after {
+left: 6px;
+top: 2px;
+width: 5px;
+height: 10px;
+border: solid white;
+border-width: 0 2px 2px 0;
+transform: rotate(45deg);
+}
+.scroll-container {
+-ms-overflow-style: none;
+scrollbar-width: none;
+}
+.scroll-container::-webkit-scrollbar {
+display: none;
+}
+</style>
+</head>
+<body class="bg-gray-50">
+<!-- Navigation -->
+<nav class="bg-white shadow-sm fixed w-full z-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between h-16">
+<div class="flex items-center">
+<a href="#" class="flex-shrink-0 flex items-center">
+<span class="text-2xl font-['Pacifico'] text-primary">logo</span>
+</a>
+<div class="hidden sm:ml-10 sm:flex sm:space-x-8">
+<a href="#" class="border-primary text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Home</a>
+<a href="https://readdy.ai/home/ed5d6110-c2c7-48cc-8263-62847553273d/bda5bad1-b3cb-47c5-90eb-f17ef5bb5e3d" data-readdy="true" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Courses</a>
+<a href="#" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Paths</a>
+<a href="#" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Community</a>
+<a href="#" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">About</a>
+</div>
+</div>
+<div class="hidden sm:ml-6 sm:flex sm:items-center sm:space-x-4">
+<a href="#" class="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium">Sign In</a>
+<a href="#" class="bg-primary text-white hover:bg-primary/90 px-4 py-2 text-sm font-medium !rounded-button whitespace-nowrap">Get Started</a>
+</div>
+<div class="flex items-center sm:hidden">
+<button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-menu-line ri-lg"></i>
+</div>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="hero-section pt-16" style="background-image: url('https://readdy.ai/api/search-image?query=A%20stunning%20educational%20environment%20with%20a%20modern%2C%20minimalist%20design.%20The%20left%20side%20has%20a%20clean%20gradient%20from%20dark%20blue%20to%20transparent%2C%20perfect%20for%20text%20overlay.%20The%20right%20side%20shows%20students%20engaged%20in%20learning%20with%20laptops%20and%20digital%20devices.%20Soft%20lighting%20creates%20an%20inspiring%20atmosphere%20for%20learning%20new%20skills.%20Professional%2C%20high-quality%2C%20photorealistic%20style.&width=1920&height=800&seq=hero1&orientation=landscape');">
+<div class="hero-overlay w-full h-full">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
+<div class="w-full md:w-1/2">
+<h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">Master New Skills. Unlock New Opportunities.</h1>
+<p class="mt-6 text-xl text-gray-200 max-w-lg">Join thousands of learners building their future with industry-relevant courses designed by experts.</p>
+<div class="mt-10 flex flex-wrap gap-4">
+<a href="#" class="bg-primary text-white px-6 py-3 text-lg font-medium !rounded-button shadow-lg hover:shadow-xl hover:bg-primary/90 transition-all whitespace-nowrap">Explore Courses</a>
+<a href="#" class="bg-white text-gray-900 px-6 py-3 text-lg font-medium !rounded-button shadow-lg hover:shadow-xl hover:bg-gray-100 transition-all whitespace-nowrap">Join for Free</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Skill Paths Section -->
+<section class="py-16 bg-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center mb-8">
+<h2 class="text-3xl font-bold text-gray-900">Explore Skill Paths</h2>
+<div class="flex space-x-2">
+<button id="prev-skill" class="p-2 rounded-full border border-gray-300 text-gray-600 hover:bg-gray-100">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-arrow-left-s-line ri-lg"></i>
+</div>
+</button>
+<button id="next-skill" class="p-2 rounded-full border border-gray-300 text-gray-600 hover:bg-gray-100">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-arrow-right-s-line ri-lg"></i>
+</div>
+</button>
+</div>
+</div>
+<div class="relative">
+<div id="skill-container" class="flex space-x-6 overflow-x-auto scroll-container pb-4">
+<div class="skill-card flex-shrink-0 w-72 bg-white rounded-lg shadow-md overflow-hidden border border-gray-100 transition-all duration-300">
+<div class="p-6">
+<div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+<div class="w-6 h-6 flex items-center justify-center text-primary">
+<i class="ri-code-s-slash-line ri-lg"></i>
+</div>
+</div>
+<h3 class="text-xl font-semibold text-gray-900 mb-2">Web Development</h3>
+<p class="text-gray-600 mb-4">Master HTML, CSS, JavaScript and build responsive websites from scratch.</p>
+<div class="flex justify-between items-center">
+<span class="text-sm text-gray-500">24 courses</span>
+<a href="#" class="text-primary font-medium flex items-center">
+Explore
+<div class="w-5 h-5 ml-1 flex items-center justify-center">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="skill-card flex-shrink-0 w-72 bg-white rounded-lg shadow-md overflow-hidden border border-gray-100 transition-all duration-300">
+<div class="p-6">
+<div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+<div class="w-6 h-6 flex items-center justify-center text-green-600">
+<i class="ri-line-chart-line ri-lg"></i>
+</div>
+</div>
+<h3 class="text-xl font-semibold text-gray-900 mb-2">Business Growth</h3>
+<p class="text-gray-600 mb-4">Learn marketing, sales, and business strategy to scale your business effectively.</p>
+<div class="flex justify-between items-center">
+<span class="text-sm text-gray-500">18 courses</span>
+<a href="#" class="text-primary font-medium flex items-center">
+Explore
+<div class="w-5 h-5 ml-1 flex items-center justify-center">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="skill-card flex-shrink-0 w-72 bg-white rounded-lg shadow-md overflow-hidden border border-gray-100 transition-all duration-300">
+<div class="p-6">
+<div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+<div class="w-6 h-6 flex items-center justify-center text-purple-600">
+<i class="ri-palette-line ri-lg"></i>
+</div>
+</div>
+<h3 class="text-xl font-semibold text-gray-900 mb-2">Creative Design</h3>
+<p class="text-gray-600 mb-4">Develop your creative skills in UI/UX, graphic design, and digital illustration.</p>
+<div class="flex justify-between items-center">
+<span class="text-sm text-gray-500">15 courses</span>
+<a href="#" class="text-primary font-medium flex items-center">
+Explore
+<div class="w-5 h-5 ml-1 flex items-center justify-center">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="skill-card flex-shrink-0 w-72 bg-white rounded-lg shadow-md overflow-hidden border border-gray-100 transition-all duration-300">
+<div class="p-6">
+<div class="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center mb-4">
+<div class="w-6 h-6 flex items-center justify-center text-amber-600">
+<i class="ri-database-2-line ri-lg"></i>
+</div>
+</div>
+<h3 class="text-xl font-semibold text-gray-900 mb-2">Data Science</h3>
+<p class="text-gray-600 mb-4">Learn to analyze data, build models, and extract insights using Python and SQL.</p>
+<div class="flex justify-between items-center">
+<span class="text-sm text-gray-500">20 courses</span>
+<a href="#" class="text-primary font-medium flex items-center">
+Explore
+<div class="w-5 h-5 ml-1 flex items-center justify-center">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="skill-card flex-shrink-0 w-72 bg-white rounded-lg shadow-md overflow-hidden border border-gray-100 transition-all duration-300">
+<div class="p-6">
+<div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+<div class="w-6 h-6 flex items-center justify-center text-red-600">
+<i class="ri-movie-line ri-lg"></i>
+</div>
+</div>
+<h3 class="text-xl font-semibold text-gray-900 mb-2">Video Production</h3>
+<p class="text-gray-600 mb-4">Create professional videos with editing, motion graphics, and storytelling techniques.</p>
+<div class="flex justify-between items-center">
+<span class="text-sm text-gray-500">12 courses</span>
+<a href="#" class="text-primary font-medium flex items-center">
+Explore
+<div class="w-5 h-5 ml-1 flex items-center justify-center">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Courses Section -->
+<section class="py-16 bg-gray-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-12">
+<h2 class="text-3xl font-bold text-gray-900 mb-4">Featured Courses</h2>
+<p class="text-xl text-gray-600 max-w-2xl mx-auto">Discover our most popular courses designed to help you achieve your goals.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Course 1 -->
+<div class="course-card bg-white rounded-lg shadow-md overflow-hidden border border-gray-100 transition-all duration-300">
+<div class="relative h-48">
+<img src="https://readdy.ai/api/search-image?query=Professional%20web%20development%20workspace%20with%20code%20editor%20showing%20HTML%2C%20CSS%20and%20JavaScript%20on%20screen.%20Clean%2C%20modern%20desk%20setup%20with%20laptop%2C%20coffee%20cup%2C%20and%20minimal%20decorations.%20Soft%20natural%20lighting%2C%20high-quality%20professional%20photography%20style.&width=600&height=400&seq=course1&orientation=landscape" alt="Web Development Fundamentals" class="w-full h-full object-cover object-top">
+<div class="absolute top-3 right-3 bg-primary text-white text-xs font-bold px-2 py-1 rounded">Bestseller</div>
+</div>
+<div class="p-6">
+<div class="flex items-center mb-2">
+<div class="text-amber-400 flex">
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-star-half-fill"></i>
+</div>
+</div>
+<span class="text-sm text-gray-600 ml-2">4.8 (2,456 reviews)</span>
+</div>
+<h3 class="text-xl font-semibold text-gray-900 mb-2">Complete Web Development Bootcamp</h3>
+<p class="text-gray-600 mb-4">Learn HTML, CSS, JavaScript, React, Node.js and more to become a full-stack developer.</p>
+<div class="flex items-center mb-4">
+<img src="https://readdy.ai/api/search-image?query=Professional%20headshot%20of%20a%20male%20web%20development%20instructor%20with%20glasses%20and%20a%20friendly%20smile.%20Clean%20background%2C%20professional%20lighting%2C%20high-quality%20portrait.&width=100&height=100&seq=instructor1&orientation=squarish" alt="David Mitchell" class="w-8 h-8 rounded-full object-cover">
+<span class="text-sm text-gray-700 ml-2">David Mitchell</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-lg font-bold text-gray-900">$89.99</span>
+<a href="#" class="bg-primary text-white px-4 py-2 text-sm font-medium !rounded-button whitespace-nowrap">Enroll Now</a>
+</div>
+</div>
+</div>
+<!-- Course 2 -->
+<div class="course-card bg-white rounded-lg shadow-md overflow-hidden border border-gray-100 transition-all duration-300">
+<div class="relative h-48">
+<img src="https://readdy.ai/api/search-image?query=Digital%20marketing%20strategy%20meeting%20with%20professionals%20analyzing%20data%20on%20screens.%20Charts%2C%20graphs%20and%20marketing%20materials%20visible.%20Modern%20office%20environment%20with%20team%20collaboration.%20Professional%20business%20setting%20with%20clean%2C%20minimal%20aesthetic.&width=600&height=400&seq=course2&orientation=landscape" alt="Digital Marketing Masterclass" class="w-full h-full object-cover object-top">
+<div class="absolute top-3 right-3 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">New</div>
+</div>
+<div class="p-6">
+<div class="flex items-center mb-2">
+<div class="text-amber-400 flex">
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-star-line"></i>
+</div>
+</div>
+<span class="text-sm text-gray-600 ml-2">4.0 (1,823 reviews)</span>
+</div>
+<h3 class="text-xl font-semibold text-gray-900 mb-2">Digital Marketing Masterclass</h3>
+<p class="text-gray-600 mb-4">Master SEO, social media, email marketing, and PPC to grow your business online.</p>
+<div class="flex items-center mb-4">
+<img src="https://readdy.ai/api/search-image?query=Professional%20headshot%20of%20a%20female%20marketing%20expert%20with%20long%20dark%20hair%20and%20a%20confident%20smile.%20Clean%20background%2C%20professional%20lighting%2C%20high-quality%20portrait.&width=100&height=100&seq=instructor2&orientation=squarish" alt="Sarah Johnson" class="w-8 h-8 rounded-full object-cover">
+<span class="text-sm text-gray-700 ml-2">Sarah Johnson</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-lg font-bold text-gray-900">$69.99</span>
+<a href="#" class="bg-primary text-white px-4 py-2 text-sm font-medium !rounded-button whitespace-nowrap">Enroll Now</a>
+</div>
+</div>
+</div>
+<!-- Course 3 -->
+<div class="course-card bg-white rounded-lg shadow-md overflow-hidden border border-gray-100 transition-all duration-300">
+<div class="relative h-48">
+<img src="https://readdy.ai/api/search-image?query=UI%2FUX%20design%20workspace%20with%20tablet%20showing%20app%20interface%20design%2C%20color%20palettes%2C%20wireframes%20and%20prototyping%20tools.%20Modern%20design%20studio%20with%20clean%20aesthetic.%20Professional%20creative%20environment%20with%20design%20tools.&width=600&height=400&seq=course3&orientation=landscape" alt="UI/UX Design Essentials" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<div class="flex items-center mb-2">
+<div class="text-amber-400 flex">
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+</div>
+<span class="text-sm text-gray-600 ml-2">4.9 (3,127 reviews)</span>
+</div>
+<h3 class="text-xl font-semibold text-gray-900 mb-2">UI/UX Design Essentials</h3>
+<p class="text-gray-600 mb-4">Learn to create beautiful, user-friendly interfaces that engage and convert.</p>
+<div class="flex items-center mb-4">
+<img src="https://readdy.ai/api/search-image?query=Professional%20headshot%20of%20an%20Asian%20female%20design%20instructor%20with%20short%20hair%20and%20a%20creative%20style.%20Clean%20background%2C%20professional%20lighting%2C%20high-quality%20portrait.&width=100&height=100&seq=instructor3&orientation=squarish" alt="Emily Chen" class="w-8 h-8 rounded-full object-cover">
+<span class="text-sm text-gray-700 ml-2">Emily Chen</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-lg font-bold text-gray-900">$79.99</span>
+<a href="#" class="bg-primary text-white px-4 py-2 text-sm font-medium !rounded-button whitespace-nowrap">Enroll Now</a>
+</div>
+</div>
+</div>
+<!-- Course 4 -->
+<div class="course-card bg-white rounded-lg shadow-md overflow-hidden border border-gray-100 transition-all duration-300">
+<div class="relative h-48">
+<img src="https://readdy.ai/api/search-image?query=Data%20science%20workspace%20with%20multiple%20screens%20showing%20data%20visualizations%2C%20Python%20code%2C%20and%20statistical%20analysis.%20Clean%2C%20organized%20desk%20with%20notebook%20and%20coffee.%20Professional%20data%20analysis%20environment%20with%20charts%20and%20graphs.&width=600&height=400&seq=course4&orientation=landscape" alt="Data Science Fundamentals" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-6">
+<div class="flex items-center mb-2">
+<div class="text-amber-400 flex">
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-star-half-fill"></i>
+</div>
+</div>
+<span class="text-sm text-gray-600 ml-2">4.7 (1,945 reviews)</span>
+</div>
+<h3 class="text-xl font-semibold text-gray-900 mb-2">Data Science with Python</h3>
+<p class="text-gray-600 mb-4">Learn Python, pandas, NumPy, and visualization tools for data analysis.</p>
+<div class="flex items-center mb-4">
+<img src="https://readdy.ai/api/search-image?query=Professional%20headshot%20of%20a%20male%20data%20scientist%20with%20a%20beard%20and%20glasses.%20Clean%20background%2C%20professional%20lighting%2C%20high-quality%20portrait.&width=100&height=100&seq=instructor4&orientation=squarish" alt="Michael Rodriguez" class="w-8 h-8 rounded-full object-cover">
+<span class="text-sm text-gray-700 ml-2">Michael Rodriguez</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-lg font-bold text-gray-900">$94.99</span>
+<a href="#" class="bg-primary text-white px-4 py-2 text-sm font-medium !rounded-button whitespace-nowrap">Enroll Now</a>
+</div>
+</div>
+</div>
+<!-- Course 5 -->
+<div class="course-card bg-white rounded-lg shadow-md overflow-hidden border border-gray-100 transition-all duration-300">
+<div class="relative h-48">
+<img src="https://readdy.ai/api/search-image?query=Professional%20photography%20setup%20with%20DSLR%20camera%2C%20lighting%20equipment%2C%20and%20photo%20editing%20workspace.%20Clean%20studio%20environment%20with%20sample%20photos%20displayed.%20High-quality%20photography%20equipment%20in%20a%20professional%20setting.&width=600&height=400&seq=course5&orientation=landscape" alt="Photography Masterclass" class="w-full h-full object-cover object-top">
+<div class="absolute top-3 right-3 bg-primary text-white text-xs font-bold px-2 py-1 rounded">Bestseller</div>
+</div>
+<div class="p-6">
+<div class="flex items-center mb-2">
+<div class="text-amber-400 flex">
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-star-half-fill"></i>
+</div>
+</div>
+<span class="text-sm text-gray-600 ml-2">4.8 (2,312 reviews)</span>
+</div>
+<h3 class="text-xl font-semibold text-gray-900 mb-2">Photography Masterclass</h3>
+<p class="text-gray-600 mb-4">Master camera settings, composition, lighting, and post-processing techniques.</p>
+<div class="flex items-center mb-4">
+<img src="https://readdy.ai/api/search-image?query=Professional%20headshot%20of%20a%20female%20photography%20instructor%20with%20curly%20hair%20and%20an%20artistic%20style.%20Clean%20background%2C%20professional%20lighting%2C%20high-quality%20portrait.&width=100&height=100&seq=instructor5&orientation=squarish" alt="Rebecca Williams" class="w-8 h-8 rounded-full object-cover">
+<span class="text-sm text-gray-700 ml-2">Rebecca Williams</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-lg font-bold text-gray-900">$74.99</span>
+<a href="#" class="bg-primary text-white px-4 py-2 text-sm font-medium !rounded-button whitespace-nowrap">Enroll Now</a>
+</div>
+</div>
+</div>
+<!-- Course 6 -->
+<div class="course-card bg-white rounded-lg shadow-md overflow-hidden border border-gray-100 transition-all duration-300">
+<div class="relative h-48">
+<img src="https://readdy.ai/api/search-image?query=Financial%20planning%20workspace%20with%20charts%2C%20calculator%2C%20and%20investment%20documents.%20Professional%20business%20setting%20with%20financial%20reports%20and%20growth%20graphs.%20Clean%2C%20organized%20desk%20with%20laptop%20showing%20stock%20market%20data.&width=600&height=400&seq=course6&orientation=landscape" alt="Financial Planning" class="w-full h-full object-cover object-top">
+<div class="absolute top-3 right-3 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">New</div>
+</div>
+<div class="p-6">
+<div class="flex items-center mb-2">
+<div class="text-amber-400 flex">
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-star-line"></i>
+</div>
+</div>
+<span class="text-sm text-gray-600 ml-2">4.2 (1,456 reviews)</span>
+</div>
+<h3 class="text-xl font-semibold text-gray-900 mb-2">Personal Finance Mastery</h3>
+<p class="text-gray-600 mb-4">Learn budgeting, investing, retirement planning, and building long-term wealth.</p>
+<div class="flex items-center mb-4">
+<img src="https://readdy.ai/api/search-image?query=Professional%20headshot%20of%20an%20African%20American%20male%20finance%20instructor%20in%20a%20suit.%20Clean%20background%2C%20professional%20lighting%2C%20high-quality%20portrait.&width=100&height=100&seq=instructor6&orientation=squarish" alt="James Thompson" class="w-8 h-8 rounded-full object-cover">
+<span class="text-sm text-gray-700 ml-2">James Thompson</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-lg font-bold text-gray-900">$59.99</span>
+<a href="#" class="bg-primary text-white px-4 py-2 text-sm font-medium !rounded-button whitespace-nowrap">Enroll Now</a>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-12 text-center">
+<a href="#" class="inline-flex items-center justify-center px-6 py-3 border border-gray-300 text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 !rounded-button whitespace-nowrap">
+View All Courses
+<div class="w-5 h-5 ml-2 flex items-center justify-center">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+</div>
+</section>
+<!-- Trust Section -->
+<section class="py-16 bg-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-12">
+<h2 class="text-3xl font-bold text-gray-900 mb-4">Why Choose SkillSpire?</h2>
+<p class="text-xl text-gray-600 max-w-2xl mx-auto">Join thousands of learners who trust us for their educational journey.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="text-center p-6">
+<div class="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-4">
+<div class="w-8 h-8 flex items-center justify-center text-primary">
+<i class="ri-user-follow-line ri-2x"></i>
+</div>
+</div>
+<h3 class="text-4xl font-bold text-gray-900 mb-2" id="learner-count">0</h3>
+<p class="text-lg text-gray-600">Active Learners</p>
+</div>
+<div class="text-center p-6">
+<div class="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-4">
+<div class="w-8 h-8 flex items-center justify-center text-green-600">
+<i class="ri-award-line ri-2x"></i>
+</div>
+</div>
+<h3 class="text-4xl font-bold text-gray-900 mb-2" id="instructor-count">0</h3>
+<p class="text-lg text-gray-600">Expert Instructors</p>
+</div>
+<div class="text-center p-6">
+<div class="w-16 h-16 mx-auto bg-amber-100 rounded-full flex items-center justify-center mb-4">
+<div class="w-8 h-8 flex items-center justify-center text-amber-600">
+<i class="ri-graduation-cap-line ri-2x"></i>
+</div>
+</div>
+<h3 class="text-4xl font-bold text-gray-900 mb-2" id="course-count">0</h3>
+<p class="text-lg text-gray-600">Courses Available</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Testimonials Section -->
+<section class="py-16 bg-gray-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-12">
+<h2 class="text-3xl font-bold text-gray-900 mb-4">Success Stories</h2>
+<p class="text-xl text-gray-600 max-w-2xl mx-auto">Hear from our students who transformed their careers with SkillSpire.</p>
+</div>
+<div class="relative max-w-4xl mx-auto">
+<div id="testimonials-container">
+<!-- Testimonial 1 -->
+<div class="testimonial-slide active">
+<div class="bg-white rounded-xl shadow-md p-8 md:p-10">
+<div class="flex flex-col md:flex-row items-center md:items-start gap-6">
+<img src="https://readdy.ai/api/search-image?query=Professional%20headshot%20of%20a%20young%20male%20software%20developer%20with%20a%20friendly%20smile.%20Clean%20background%2C%20professional%20lighting%2C%20high-quality%20portrait.&width=150&height=150&seq=testimonial1&orientation=squarish" alt="Ryan Anderson" class="w-24 h-24 rounded-full object-cover">
+<div>
+<div class="text-amber-400 flex mb-4">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+</div>
+<p class="text-gray-700 text-lg mb-6">"The Web Development Bootcamp completely changed my career trajectory. I went from working in retail to landing a job as a front-end developer at a tech startup within 3 months of completing the course. The curriculum was comprehensive and the instructor support was incredible."</p>
+<div>
+<h4 class="text-xl font-semibold text-gray-900">Ryan Anderson</h4>
+<p class="text-gray-600">Front-end Developer at TechFlow</p>
+<p class="text-sm text-primary mt-2">Completed: Complete Web Development Bootcamp</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Testimonial 2 -->
+<div class="testimonial-slide">
+<div class="bg-white rounded-xl shadow-md p-8 md:p-10">
+<div class="flex flex-col md:flex-row items-center md:items-start gap-6">
+<img src="https://readdy.ai/api/search-image?query=Professional%20headshot%20of%20a%20female%20marketing%20professional%20with%20long%20hair%20and%20a%20confident%20smile.%20Clean%20background%2C%20professional%20lighting%2C%20high-quality%20portrait.&width=150&height=150&seq=testimonial2&orientation=squarish" alt="Jennifer Martinez" class="w-24 h-24 rounded-full object-cover">
+<div>
+<div class="text-amber-400 flex mb-4">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+</div>
+<p class="text-gray-700 text-lg mb-6">"The Digital Marketing Masterclass helped me double my client's online conversions. The strategies I learned were practical and immediately applicable. I've recommended this course to everyone on my team, and we've seen measurable improvements in our campaign performance."</p>
+<div>
+<h4 class="text-xl font-semibold text-gray-900">Jennifer Martinez</h4>
+<p class="text-gray-600">Marketing Director at GrowthLabs</p>
+<p class="text-sm text-primary mt-2">Completed: Digital Marketing Masterclass</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Testimonial 3 -->
+<div class="testimonial-slide">
+<div class="bg-white rounded-xl shadow-md p-8 md:p-10">
+<div class="flex flex-col md:flex-row items-center md:items-start gap-6">
+<img src="https://readdy.ai/api/search-image?query=Professional%20headshot%20of%20an%20Asian%20male%20UX%20designer%20with%20glasses%20and%20a%20creative%20style.%20Clean%20background%2C%20professional%20lighting%2C%20high-quality%20portrait.&width=150&height=150&seq=testimonial3&orientation=squarish" alt="Alex Wong" class="w-24 h-24 rounded-full object-cover">
+<div>
+<div class="text-amber-400 flex mb-4">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-star-fill"></i>
+</div>
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-star-half-fill"></i>
+</div>
+</div>
+<p class="text-gray-700 text-lg mb-6">"The UI/UX Design Essentials course transformed how I approach design problems. I went from creating decent interfaces to crafting exceptional user experiences. My portfolio improved dramatically, and I was able to secure a senior design position at a company I've always admired."</p>
+<div>
+<h4 class="text-xl font-semibold text-gray-900">Alex Wong</h4>
+<p class="text-gray-600">Senior UX Designer at DesignHub</p>
+<p class="text-sm text-primary mt-2">Completed: UI/UX Design Essentials</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Testimonial Navigation -->
+<div class="flex justify-center mt-8">
+<button class="testimonial-dot w-3 h-3 rounded-full bg-primary mx-1" data-index="0"></button>
+<button class="testimonial-dot w-3 h-3 rounded-full bg-gray-300 mx-1" data-index="1"></button>
+<button class="testimonial-dot w-3 h-3 rounded-full bg-gray-300 mx-1" data-index="2"></button>
+</div>
+<button id="prev-testimonial" class="absolute top-1/2 -translate-y-1/2 -left-4 md:-left-12 p-2 rounded-full border border-gray-300 text-gray-600 hover:bg-gray-100 bg-white shadow-md">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-arrow-left-s-line ri-lg"></i>
+</div>
+</button>
+<button id="next-testimonial" class="absolute top-1/2 -translate-y-1/2 -right-4 md:-right-12 p-2 rounded-full border border-gray-300 text-gray-600 hover:bg-gray-100 bg-white shadow-md">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-arrow-right-s-line ri-lg"></i>
+</div>
+</button>
+</div>
+</div>
+</section>
+<!-- Community Section -->
+<section class="py-16 bg-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl overflow-hidden">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 p-8 md:p-12">
+<div class="flex flex-col justify-center">
+<h2 class="text-3xl font-bold text-gray-900 mb-6">Join Our Learning Community</h2>
+<p class="text-lg text-gray-700 mb-8">Connect with fellow learners, share your progress, get feedback on projects, and participate in exclusive events and challenges.</p>
+<div class="flex flex-wrap gap-6 mb-8">
+<div class="flex items-center">
+<div class="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center mr-3">
+<div class="w-5 h-5 flex items-center justify-center text-primary">
+<i class="ri-user-line"></i>
+</div>
+</div>
+<div>
+<h4 class="font-semibold text-gray-900">25K+</h4>
+<p class="text-sm text-gray-600">Active Members</p>
+</div>
+</div>
+<div class="flex items-center">
+<div class="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center mr-3">
+<div class="w-5 h-5 flex items-center justify-center text-primary">
+<i class="ri-message-3-line"></i>
+</div>
+</div>
+<div>
+<h4 class="font-semibold text-gray-900">10K+</h4>
+<p class="text-sm text-gray-600">Daily Messages</p>
+</div>
+</div>
+<div class="flex items-center">
+<div class="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center mr-3">
+<div class="w-5 h-5 flex items-center justify-center text-primary">
+<i class="ri-group-line"></i>
+</div>
+</div>
+<div>
+<h4 class="font-semibold text-gray-900">500+</h4>
+<p class="text-sm text-gray-600">Study Groups</p>
+</div>
+</div>
+</div>
+<a href="#" class="bg-primary text-white px-6 py-3 text-base font-medium !rounded-button shadow-md hover:shadow-lg hover:bg-primary/90 transition-all inline-block w-fit whitespace-nowrap">Join Community</a>
+</div>
+<div class="flex items-center justify-center">
+<img src="https://readdy.ai/api/search-image?query=Diverse%20group%20of%20students%20collaborating%20on%20laptops%20in%20a%20modern%20learning%20space.%20They%20are%20smiling%20and%20engaging%20in%20discussion.%20The%20environment%20is%20bright%2C%20clean%20and%20inspiring%20with%20minimal%20decorations.%20Professional%20photography%20with%20natural%20lighting.&width=600&height=500&seq=community&orientation=portrait" alt="Learning Community" class="rounded-xl shadow-lg max-w-full h-auto">
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Newsletter Section -->
+<section class="py-16 bg-gray-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="max-w-2xl mx-auto text-center">
+<h2 class="text-3xl font-bold text-gray-900 mb-4">Stay Updated</h2>
+<p class="text-lg text-gray-600 mb-8">Subscribe to our newsletter for the latest courses, learning tips, and exclusive offers.</p>
+<form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+<div class="flex-grow">
+<input type="email" placeholder="Enter your email" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary text-gray-900">
+</div>
+<button type="submit" class="bg-primary text-white px-6 py-3 rounded-md font-medium hover:bg-primary/90 transition-all !rounded-button whitespace-nowrap">Subscribe</button>
+</form>
+<p class="text-sm text-gray-500 mt-4">We respect your privacy. Unsubscribe at any time.</p>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-gray-900 text-white pt-16 pb-8">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+<div>
+<a href="#" class="text-2xl font-['Pacifico'] text-white mb-4 inline-block">logo</a>
+<p class="text-gray-400 mb-6">Empowering learners worldwide with skills that matter in today's digital economy.</p>
+<div class="flex space-x-4">
+<a href="#" class="text-gray-400 hover:text-white">
+<div class="w-10 h-10 flex items-center justify-center border border-gray-700 rounded-full">
+<i class="ri-facebook-fill"></i>
+</div>
+</a>
+<a href="#" class="text-gray-400 hover:text-white">
+<div class="w-10 h-10 flex items-center justify-center border border-gray-700 rounded-full">
+<i class="ri-twitter-x-fill"></i>
+</div>
+</a>
+<a href="#" class="text-gray-400 hover:text-white">
+<div class="w-10 h-10 flex items-center justify-center border border-gray-700 rounded-full">
+<i class="ri-instagram-fill"></i>
+</div>
+</a>
+<a href="#" class="text-gray-400 hover:text-white">
+<div class="w-10 h-10 flex items-center justify-center border border-gray-700 rounded-full">
+<i class="ri-linkedin-fill"></i>
+</div>
+</a>
+</div>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-4">Explore</h3>
+<ul class="space-y-3">
+<li><a href="#" class="text-gray-400 hover:text-white">All Courses</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">Skill Paths</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">Free Courses</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">Become an Instructor</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">Learning Blog</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-4">Company</h3>
+<ul class="space-y-3">
+<li><a href="#" class="text-gray-400 hover:text-white">About Us</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">Careers</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">Press</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">Partners</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-4">Support</h3>
+<ul class="space-y-3">
+<li><a href="#" class="text-gray-400 hover:text-white">Help Center</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">Terms of Service</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">Cookie Settings</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">Accessibility</a></li>
+</ul>
+</div>
+</div>
+<div class="border-t border-gray-800 pt-8">
+<div class="flex flex-col md:flex-row justify-between items-center">
+<p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 SkillSpire. All rights reserved.</p>
+<div class="flex items-center space-x-4">
+<div class="text-gray-400">
+<i class="ri-visa-fill ri-lg"></i>
+</div>
+<div class="text-gray-400">
+<i class="ri-mastercard-fill ri-lg"></i>
+</div>
+<div class="text-gray-400">
+<i class="ri-paypal-fill ri-lg"></i>
+</div>
+<div class="text-gray-400">
+<i class="ri-apple-fill ri-lg"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+// Skill Path Carousel
+const skillContainer = document.getElementById('skill-container');
+const prevSkill = document.getElementById('prev-skill');
+const nextSkill = document.getElementById('next-skill');
+prevSkill.addEventListener('click', function() {
+skillContainer.scrollBy({ left: -300, behavior: 'smooth' });
+});
+nextSkill.addEventListener('click', function() {
+skillContainer.scrollBy({ left: 300, behavior: 'smooth' });
+});
+});
+document.addEventListener('DOMContentLoaded', function() {
+// Testimonial Carousel
+let currentSlide = 0;
+const slides = document.querySelectorAll('.testimonial-slide');
+const dots = document.querySelectorAll('.testimonial-dot');
+const prevBtn = document.getElementById('prev-testimonial');
+const nextBtn = document.getElementById('next-testimonial');
+function showSlide(index) {
+slides.forEach(slide => {
+slide.classList.remove('active');
+});
+dots.forEach(dot => {
+dot.classList.remove('bg-primary');
+dot.classList.add('bg-gray-300');
+});
+slides[index].classList.add('active');
+dots[index].classList.remove('bg-gray-300');
+dots[index].classList.add('bg-primary');
+currentSlide = index;
+}
+prevBtn.addEventListener('click', function() {
+let newIndex = currentSlide - 1;
+if (newIndex < 0) newIndex = slides.length - 1;
+showSlide(newIndex);
+});
+nextBtn.addEventListener('click', function() {
+let newIndex = currentSlide + 1;
+if (newIndex >= slides.length) newIndex = 0;
+showSlide(newIndex);
+});
+dots.forEach((dot, index) => {
+dot.addEventListener('click', function() {
+showSlide(index);
+});
+});
+// Auto rotate testimonials
+setInterval(function() {
+let newIndex = currentSlide + 1;
+if (newIndex >= slides.length) newIndex = 0;
+showSlide(newIndex);
+}, 8000);
+});
+document.addEventListener('DOMContentLoaded', function() {
+// Counter Animation for Trust Section
+function animateCounter(elementId, targetValue, duration) {
+const element = document.getElementById(elementId);
+const startValue = 0;
+const increment = targetValue / (duration / 16);
+let currentValue = startValue;
+const timer = setInterval(function() {
+currentValue += increment;
+if (currentValue >= targetValue) {
+clearInterval(timer);
+currentValue = targetValue;
+}
+element.textContent = Math.floor(currentValue).toLocaleString();
+}, 16);
+}
+// Check if element is in viewport
+function isInViewport(element) {
+const rect = element.getBoundingClientRect();
+return (
+rect.top >= 0 &&
+rect.left >= 0 &&
+rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+);
+}
+// Start animation when element is in viewport
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+animateCounter('learner-count', 50000, 2000);
+animateCounter('instructor-count', 320, 2000);
+animateCounter('course-count', 1200, 2000);
+observer.disconnect();
+}
+});
+});
+observer.observe(document.getElementById('learner-count'));
+});
+</script>
+</body>
+</html>
